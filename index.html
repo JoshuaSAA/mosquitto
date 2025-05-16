@@ -5,10 +5,11 @@
   <title>Monitor MQTT</title>
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; }
-    #messages { border: 1px solid #ccc; padding: 10px; height: 200px; overflow-y: scroll; }
+    
   </style>
 </head>
 <body>
+<h1>MQTT Web Client</h1>
 
   <div>
     <label for="messageInput">Mensaje:</label>
@@ -16,7 +17,7 @@
     <button onclick="sendMessage()">Enviar</button>
   </div>
 
-  <h1>Mensajes MQTT</h1>
+  <h1>Mensajes recibidos</h1>
   <div id="messages"></div>
 
   <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
