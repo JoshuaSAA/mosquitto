@@ -17,7 +17,7 @@
     <button onclick="sendMessage()">Enviar</button>
   </div>
 
-  <h1>Mensajes recibidos</h1>
+  <h2>Mensajes recibidos:</h2>
   <div id="messages"></div>
 
   <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
@@ -36,6 +36,11 @@
       div.innerHTML += `<p><strong>${topic}</strong>: ${msg}</p>`;
       div.scrollTop = div.scrollHeight;
     });
+
+function sendMessage() {
+  const msg = document.getElementById('messageInput').value;
+  client.publish('test', msg);
+}
   </script>
 </body>
 </html>
