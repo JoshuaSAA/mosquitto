@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Monitor MQTT</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    #messages { border: 1px solid #ccc; padding: 10px; height: 200px; overflow-y: scroll; }
+  </style>
+</head>
+<body>
+
+  <div>
+    <label for="messageInput">Mensaje:</label>
+    <input type="text" id="messageInput">
+    <button onclick="sendMessage()">Enviar</button>
+  </div>
+
+  <h1>Mensajes MQTT</h1>
+  <div id="messages"></div>
+
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+  <script>
+    // Conexión WebSocket a Mosquitto
+    const client = mqtt.connect("ws://localhost:9001");
+
+    client.on("connect", () => {
+      console.log("Conectado al broker MQTT por WebSocket");
+      client.subscribe("test");
+    });
+
+    client.on("message", (topic, message) => {
+      const msg = message.toString();
+      const div = document.getElementById("messages");
+      div.innerHTML += `<p><strong>${topic}</strong>: ${msg}</p>`;
+      div.scrollTop = div.scrollHeight;
+    });
+  </script>
+</body>
+</html>
